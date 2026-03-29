@@ -351,7 +351,7 @@ class BackgroundManager:
     def check(self, tid: str = None) -> str:
         if tid:
             t = self.tasks.get(tid)
-            return f"[{t['status']}] {t.get('result', '(running)')}" if t else f"Unknown: {tid}"
+            return f"[{t['status']}] {t.get('result') or '(running)'}" if t else f"Unknown: {tid}"
         return "\n".join(f"{k}: [{v['status']}] {v['command'][:60]}" for k, v in self.tasks.items()) or "No bg tasks."
 
     def drain(self) -> list:
